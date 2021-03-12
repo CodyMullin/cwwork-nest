@@ -18,10 +18,13 @@ export class Room extends BaseEntity {
   @Column()
   description: string;
 
-  @Column('text', { array: true })
-  work: string[][];
+  @Column()
+  work: string;
 
-  @ManyToOne((type) => User, (user) => user.rooms, { eager: false })
+  @Column('text', { array: true })
+  materials: string[];
+
+  @ManyToOne(() => User, (user) => user.rooms, { eager: false })
   user: User;
 
   @Column()

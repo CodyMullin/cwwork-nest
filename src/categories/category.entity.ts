@@ -19,7 +19,7 @@ export class Category extends BaseEntity {
   @Column()
   active: CategoryStatus;
 
-  @ManyToOne((type) => User, (user) => user.categories, { eager: false })
+  @ManyToOne(() => User, (user) => user.categories, { eager: false })
   user: User;
 
   @Column()

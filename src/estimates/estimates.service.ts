@@ -4,7 +4,7 @@ import { CreateEstimateDto } from './dto/create-estimate.dto';
 import { GetEstimateFilterDto } from './dto/get-estimate-filter.dto';
 import { Estimate } from './estimate.entity';
 import { EstimateRepository } from './estimate.repository';
-// import { EstimateStatus } from './estimate.repository';
+import { EstimateStatus } from './estimate-status.enum';
 import { User } from '../auth/user.entity';
 
 @Injectable()
@@ -51,31 +51,19 @@ export class EstimatesService {
     }
   }
 
-  //   async updateMaterial(
-  //     id: number,
-  //     name: string,
-  //     description: string,
-  //     salesCost: string,
-  //     purchaseCost: string,
-  //     installCost: string,
-  //     category: string,
-  //     measurement: string,
-  //     active: MaterialStatus,
-  //     user: User,
-  //   ): Promise<Material> {
-  //     const material = await this.getMaterialById(id, user);
+  async updateEstimate(
+    id: number,
+    customerName: string,
+    status: EstimateStatus,
+    user: User,
+  ): Promise<Estimate> {
+    const estimate = await this.getEstimateById(id, user);
 
-  //     material.id = id;
-  //     material.name = name;
-  //     material.description = description;
-  //     material.salesCost = salesCost;
-  //     material.purchaseCost = purchaseCost;
-  //     material.installCost = installCost;
-  //     material.category = category;
-  //     material.measurement = measurement;
-  //     material.active = active;
+    estimate.id = id;
+    estimate.customerName = customerName;
+    estimate.status = status;
 
-  //     await material.save();
-  //     return material;
-  //   }
+    await estimate.save();
+    return estimate;
+  }
 }

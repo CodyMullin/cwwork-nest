@@ -8,6 +8,9 @@ export class CreateRoomDto {
   description: string;
 
   @IsNotEmpty()
+  work: string;
+
+  @IsNotEmpty()
   @IsString({ each: true })
-  work: string[][];
+  materials: string[];
 }

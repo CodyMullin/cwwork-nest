@@ -51,31 +51,31 @@ export class CustomersService {
     }
   }
 
-  //   async updateCustomer(
-  //     id: number,
-  //     name: string,
-  //     description: string,
-  //     salesCost: string,
-  //     purchaseCost: string,
-  //     installCost: string,
-  //     category: string,
-  //     measurement: string,
-  //     active: MaterialStatus,
-  //     user: User,
-  //   ): Promise<Material> {
-  //     const material = await this.getMaterialById(id, user);
+  async updateCustomer(
+    id: number,
+    name: string,
+    notes: string,
+    email: string[],
+    phoneNumber: string[],
+    address: string,
+    reference: string,
+    preference: string,
+    active: CustomerStatus,
+    user: User,
+  ): Promise<Customer> {
+    const customer = await this.getCustomerById(id, user);
 
-  //     material.id = id;
-  //     material.name = name;
-  //     material.description = description;
-  //     material.salesCost = salesCost;
-  //     material.purchaseCost = purchaseCost;
-  //     material.installCost = installCost;
-  //     material.category = category;
-  //     material.measurement = measurement;
-  //     material.active = active;
+    customer.id = id;
+    customer.name = name;
+    customer.notes = notes;
+    customer.email = email;
+    customer.phoneNumber = phoneNumber;
+    customer.address = address;
+    customer.reference = reference;
+    customer.preference = preference;
+    customer.active = active;
 
-  //     await material.save();
-  //     return material;
-  //   }
+    await customer.save();
+    return customer;
+  }
 }

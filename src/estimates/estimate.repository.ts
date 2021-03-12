@@ -38,7 +38,7 @@ export class EstimateRepository extends Repository<Estimate> {
 
     const estimate = new Estimate();
     estimate.customerName = customerName;
-    estimate.active = EstimateStatus.PENDING;
+    estimate.status = EstimateStatus.PENDING;
     estimate.user = user;
 
     await estimate.save();

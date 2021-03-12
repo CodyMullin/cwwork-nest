@@ -2,16 +2,14 @@ import { IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateCustomerDto {
   @IsNotEmpty()
-  firstName: string;
-
-  @IsNotEmpty()
-  lastName: string;
+  name: string;
 
   @IsNotEmpty()
   notes: string;
 
   @IsNotEmpty()
-  email: string;
+  @IsString({ each: true })
+  email: string[];
 
   @IsNotEmpty()
   @IsString({ each: true })

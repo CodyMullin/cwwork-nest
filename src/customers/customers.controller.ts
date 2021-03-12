@@ -15,7 +15,7 @@ import {
 import { CustomersService } from './customers.service';
 import { CreateCustomerDto } from './dto/create-customer.dto';
 import { GetCustomerFilterDto } from './dto/get-customer-filter.dto';
-// import { CustomerActiveValidationPipe } from './pipes/customer-active-validation.pipe';
+import { CustomerActiveValidationPipe } from './pipes/customer-active-validation.pipe';
 import { Customer } from './customer.entity';
 import { CustomerStatus } from './customer-status.enum';
 import { AuthGuard } from '@nestjs/passport';
@@ -60,30 +60,30 @@ export class CustomersController {
     return this.customersService.deleteCustomer(id, user);
   }
 
-  //   @Patch('/:id/update')
-  //   updateCustomer(
-  //     @Param('id', ParseIntPipe) id: number,
-  //     @Body('name') name: string,
-  //     @Body('description') description: string,
-  //     @Body('salesCost') salesCost: string,
-  //     @Body('purchaseCost') purchaseCost: string,
-  //     @Body('installCost') installCost: string,
-  //     @Body('category') category: string,
-  //     @Body('measurement') measurement: string,
-  //     @Body('active', MaterialActiveValidationPipe) active: MaterialStatus,
-  //     @GetUser() user: User,
-  //   ): Promise<Material> {
-  //     return this.materialsService.updateMaterial(
-  //       id,
-  //       name,
-  //       description,
-  //       salesCost,
-  //       purchaseCost,
-  //       installCost,
-  //       category,
-  //       measurement,
-  //       active,
-  //       user,
-  //     );
-  //   }
+  @Patch('/:id/update')
+  updateCustomer(
+    @Param('id', ParseIntPipe) id: number,
+    @Body('name') name: string,
+    @Body('notes') notes: string,
+    @Body('email') email: string[],
+    @Body('phoneNumber') phoneNumber: string[],
+    @Body('address') address: string,
+    @Body('reference') reference: string,
+    @Body('preference') preference: string,
+    @Body('active', CustomerActiveValidationPipe) active: CustomerStatus,
+    @GetUser() user: User,
+  ): Promise<Customer> {
+    return this.customersService.updateCustomer(
+      id,
+      name,
+      notes,
+      email,
+      phoneNumber,
+      address,
+      reference,
+      preference,
+      active,
+      user,
+    );
+  }
 }

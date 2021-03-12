@@ -17,9 +17,9 @@ export class Estimate extends BaseEntity {
   customerName: string;
 
   @Column()
-  active: EstimateStatus;
+  status: EstimateStatus;
 
-  @ManyToOne((type) => User, (user) => user.estimates, { eager: false })
+  @ManyToOne(() => User, (user) => user.estimates, { eager: false })
   user: User;
 
   @Column()

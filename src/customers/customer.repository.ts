@@ -36,8 +36,7 @@ export class CustomerRepository extends Repository<Customer> {
     user: User,
   ): Promise<Customer> {
     const {
-      firstName,
-      lastName,
+      name,
       notes,
       email,
       phoneNumber,
@@ -48,8 +47,7 @@ export class CustomerRepository extends Repository<Customer> {
 
     const customer = new Customer();
 
-    customer.firstName = firstName;
-    customer.lastName = lastName;
+    customer.name = name;
     customer.notes = notes;
     customer.email = email;
     customer.phoneNumber = phoneNumber;

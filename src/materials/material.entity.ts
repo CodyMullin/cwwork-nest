@@ -37,7 +37,7 @@ export class Material extends BaseEntity {
   @Column()
   measurement: string;
 
-  @ManyToOne((type) => User, (user) => user.materials, { eager: false })
+  @ManyToOne(() => User, (user) => user.materials, { eager: false })
   user: User;
 
   @Column()

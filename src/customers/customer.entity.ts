@@ -14,16 +14,13 @@ export class Customer extends BaseEntity {
   id: number;
 
   @Column()
-  firstName: string;
-
-  @Column()
-  lastName: string;
+  name: string;
 
   @Column()
   notes: string;
 
-  @Column()
-  email: string;
+  @Column('text', { array: true })
+  email: string[];
 
   @Column('text', { array: true })
   phoneNumber: string[];
@@ -40,7 +37,7 @@ export class Customer extends BaseEntity {
   @Column()
   preference: string;
 
-  @ManyToOne((type) => User, (user) => user.customers, { eager: false })
+  @ManyToOne(() => User, (user) => user.customers, { eager: false })
   user: User;
 
   @Column()

@@ -5,6 +5,7 @@ import { GetCategoryFilterDto } from './dto/get-category-filter.dto';
 import { Category } from './category.entity';
 import { CategoryRepository } from './category.repository';
 import { User } from '../auth/user.entity';
+import { CategoryStatus } from './category-status.enum';
 
 @Injectable()
 export class CategoriesService {
@@ -50,31 +51,20 @@ export class CategoriesService {
     }
   }
 
-  //   async updateMaterial(
-  //     id: number,
-  //     name: string,
-  //     description: string,
-  //     salesCost: string,
-  //     purchaseCost: string,
-  //     installCost: string,
-  //     category: string,
-  //     measurement: string,
-  //     active: MaterialStatus,
-  //     user: User,
-  //   ): Promise<Material> {
-  //     const material = await this.getMaterialById(id, user);
+  async updateCategory(
+    id: number,
+    name: string,
+    active: CategoryStatus,
+    user: User,
+  ): Promise<Category> {
+    const category = await this.getCategoryById(id, user);
 
-  //     material.id = id;
-  //     material.name = name;
-  //     material.description = description;
-  //     material.salesCost = salesCost;
-  //     material.purchaseCost = purchaseCost;
-  //     material.installCost = installCost;
-  //     material.category = category;
-  //     material.measurement = measurement;
-  //     material.active = active;
+    category.id = id;
+    category.name = name;
+    category.active = active;
 
-  //     await material.save();
-  //     return material;
-  //   }
+    console.log(category);
+    // await category.save();
+    return category;
+  }
 }

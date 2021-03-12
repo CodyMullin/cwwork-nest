@@ -20,6 +20,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { User } from '../auth/user.entity';
 import { GetUser } from 'src/auth/get-user.decorator';
 import { CategoryStatus } from './category-status.enum';
+import { CategoryActiveValidationPipe } from './pipes/category-active-validation.pipe';
 
 @Controller('category')
 @UseGuards(AuthGuard())
@@ -59,30 +60,13 @@ export class CategoriesController {
     return this.categoriesService.deleteCategory(id, user);
   }
 
-  //   @Patch('/:id/update')
-  //   updateMaterial(
-  //     @Param('id', ParseIntPipe) id: number,
-  //     @Body('name') name: string,
-  //     @Body('description') description: string,
-  //     @Body('salesCost') salesCost: string,
-  //     @Body('purchaseCost') purchaseCost: string,
-  //     @Body('installCost') installCost: string,
-  //     @Body('category') category: string,
-  //     @Body('measurement') measurement: string,
-  //     @Body('active', MaterialActiveValidationPipe) active: MaterialStatus,
-  //     @GetUser() user: User,
-  //   ): Promise<Material> {
-  //     return this.materialsService.updateMaterial(
-  //       id,
-  //       name,
-  //       description,
-  //       salesCost,
-  //       purchaseCost,
-  //       installCost,
-  //       category,
-  //       measurement,
-  //       active,
-  //       user,
-  //     );
-  //   }
+  @Patch('/:id/update')
+  updateMaterial(
+    @Param('id', ParseIntPipe) id: number,
+    @Body('name') name: string,
+    @Body('active', CategoryActiveValidationPipe) active: CategoryStatus,
+    @GetUser() user: User,
+  ): Promise<Category> {
+    return this.categoriesService.updateCategory(id, name, active, user);
+  }
 }
