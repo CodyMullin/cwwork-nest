@@ -19,11 +19,11 @@ export class Customer extends BaseEntity {
   @Column()
   notes: string;
 
-  @Column('text', { array: true })
-  email: string[];
+  @Column()
+  email: string;
 
-  @Column('text', { array: true })
-  phoneNumber: string[];
+  @Column()
+  phoneNumber: string;
 
   @Column()
   address: string;

@@ -8,12 +8,10 @@ export class CreateCustomerDto {
   notes: string;
 
   @IsNotEmpty()
-  @IsString({ each: true })
-  email: string[];
+  email: string;
 
   @IsNotEmpty()
-  @IsString({ each: true })
-  phoneNumber: string[];
+  phoneNumber: string;
 
   @IsNotEmpty()
   address: string;
