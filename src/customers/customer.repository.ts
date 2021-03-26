@@ -27,7 +27,7 @@ export class CustomerRepository extends Repository<Customer> {
       );
     }
 
-    const customers = query.getMany();
+    const customers = query.orderBy('customer.name', 'ASC').getMany();
     return customers;
   }
 

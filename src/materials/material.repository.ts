@@ -27,7 +27,7 @@ export class MaterialRepository extends Repository<Material> {
       );
     }
 
-    const materials = query.getMany();
+    const materials = query.orderBy('material.category', 'ASC').getMany();
     return materials;
   }
 

@@ -15,12 +15,6 @@ export class Room extends BaseEntity {
   @Column()
   name: string;
 
-  @Column()
-  description: string;
-
-  @Column()
-  work: string;
-
   @Column('text', { array: true })
   materials: string[];
 

@@ -26,7 +26,7 @@ export class CategoryRepository extends Repository<Category> {
       });
     }
 
-    const categories = query.getMany();
+    const categories = query.orderBy('category.name', 'ASC').getMany();
     return categories;
   }
 
