@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty } from 'class-validator';
+import { IsNotEmpty } from 'class-validator';
 
 export class CreateRoomDto {
   @IsNotEmpty()
@@ -6,11 +6,4 @@ export class CreateRoomDto {
 
   @IsNotEmpty()
   description: string;
-
-  @IsNotEmpty()
-  work: string;
-
-  @IsNotEmpty()
-  @IsString({ each: true })
-  materials: string[];
 }

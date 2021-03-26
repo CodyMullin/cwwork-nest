@@ -24,12 +24,12 @@ export class RoomRepository extends Repository<Room> {
   }
 
   async createRoom(createRoomDto: CreateRoomDto, user: User): Promise<Room> {
-    const { name, materials } = createRoomDto;
+    const { name, description } = createRoomDto;
 
     const room = new Room();
     room.name = name;
+    room.description = description;
 
-    room.materials = materials;
     room.user = user;
 
     await room.save();

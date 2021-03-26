@@ -12,6 +12,7 @@ import { Customer } from 'src/customers/customer.entity';
 import { Category } from '../categories/category.entity';
 import { Estimate } from '../estimates/estimate.entity';
 import { Room } from '../rooms/room.entity';
+import { Work } from '../work/work.entity';
 
 @Entity()
 @Unique(['username'])
@@ -28,20 +29,23 @@ export class User extends BaseEntity {
   @Column()
   salt: string;
 
-  @OneToMany((type) => Material, (material) => material.user, { eager: true })
+  @OneToMany(() => Material, (material) => material.user, { eager: true })
   materials: Material[];
 
-  @OneToMany((type) => Customer, (customer) => customer.user, { eager: true })
+  @OneToMany(() => Customer, (customer) => customer.user, { eager: true })
   customers: Customer[];
 
-  @OneToMany((type) => Category, (category) => category.user, { eager: true })
+  @OneToMany(() => Category, (category) => category.user, { eager: true })
   categories: Category[];
 
-  @OneToMany((type) => Estimate, (estimate) => estimate.user, { eager: true })
+  @OneToMany(() => Estimate, (estimate) => estimate.user, { eager: true })
   estimates: Estimate[];
 
-  @OneToMany((type) => Room, (room) => room.user, { eager: true })
+  @OneToMany(() => Room, (room) => room.user, { eager: true })
   rooms: Room[];
+
+  @OneToMany(() => Work, (work) => work.user, { eager: true })
+  works: Work[];
 
   async validatePassword(password: string): Promise<boolean> {
     const hash = await bcrypt.hash(password, this.salt);
